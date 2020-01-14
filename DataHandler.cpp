@@ -248,7 +248,7 @@ bool DataHandler::OnSelectFile(HWND hWnd, HINSTANCE hInstance, bool bOpen, LPTST
     return false;
 
   OPENFILENAME ofn;
-  tstring strFilter = LoadString(IDS_SCRIPT_TEMP);
+  tstring strFilter = LoadString(IDS_SCRIPT_FILTER);
 
   LPTSTR lpszTemp = &strFilter.front() - 1; // points before first
   while (true)

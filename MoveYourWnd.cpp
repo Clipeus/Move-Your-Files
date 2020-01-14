@@ -871,7 +871,7 @@ void MoveYourWnd::InitList()
   TaskList.pszText = &str.front();
   ListView_InsertColumn(m_hListView, 1, &TaskList);
 
-  str = LoadString(IDS_COL2);
+  str = LoadString(IDS_COL3);
   TaskList.cx = COL3X;
   TaskList.pszText = &str.front();
   ListView_InsertColumn(m_hListView, 2, &TaskList);

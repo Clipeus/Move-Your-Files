@@ -440,7 +440,6 @@ BEGIN
     IDS_UNEXCEPTION         "Unexception error has occurred in the module.  If you continue to receive this error, please contact your system administrator."
     IDS_OUT_OF_MEM          "The virtual memory is insufficient. Please close some programs and try again."
     IDS_IDLE_STATUS         "%lu Item(s), %lu selected"
-    IDS_COL1                "#"
     IDS_COL2                "Source files"
     IDS_COL3                "Destination files"
     IDS_NULL                "<delete>"
@@ -487,9 +486,8 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FILTER              "Program files#*.exe;*.com;*.bat#All files#*.*#"
     IDS_UPDATE_TO_EQU       "The files list is contained in list view and the file list is contained in registry are not match. List view will update."
-    IDS_SCRIPT_TEMP         "Move Your script files#*.myf#All files#*.*#"
+    IDS_SCRIPT_FILTER       "Move Your script files#*.myf#All files#*.*#"
     IDS_FILE_CREATE_FAILED  "Cannot create script file.\nOS error: "
     IDS_FILE_SYS_ERROR      "An error has occurred in system services in I/O processing script file, please try again.\nOS error: "
     IDS_NO_SCRIPT_FILE      "Invalid file or script format."
@@ -497,16 +495,10 @@ BEGIN
     IDS_CANNOT_FIND         "Cannot find string ""%s""."
     IDS_RIGHT_STATUS        "Version %u.%u"
     IDS_FILE_OPEN_FAILED    "Cannot open script file.\nOS error: "
-    IDS_FILE_OPEN_FAILED2   "Cannot open wininitt.ini file.\nOS error: "
-    IDS_FILE_SYS_ERROR2     "An error has occurred in system services in I/O processing wininit.ini file, please try again.\nOS error: "
-    IDS_SO_LARGE_FILE2      "Wininit.ini file is so larrge for processing."
-    IDS_FILE_CREATE_FAILED2 "Cannot create wininit.ini file.\nOS error: "
-    IDS_FILE_CREATE_FAILED3 "Cannot create the file.\nOS error: "
 END
 
 STRINGTABLE
 BEGIN
-    IDS_FILE_SYS_ERROR3     "An error has occurred in system services in I/O processing the file, please try again.\nOS error: "
     IDS_CAPTION_SET         "Options"
 END
 
