@@ -1,0 +1,527 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian (Russia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian (Russia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_NEW_EDIT DIALOGEX 0, 0, 267, 101
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "New"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CONTROL         "Program files (*.exe;*.dll;*.ocx;*.sys)#*.exe;*.dll;*.ocx;*.sys#All files (*.*)#*.*#",IDC_EDIT1,
+                    "FileBrowser",WS_TABSTOP,12,20,181,12
+    CONTROL         "Program files (*.exe;*.dll;*.ocx;*.sys)#*.exe;*.dll;*.ocx;*.sys#All files (*.*)#*.*#",IDC_EDIT2,
+                    "FileBrowser",WS_TABSTOP,12,48,181,12
+    CONTROL         "D&elete file",IDC_DELETE,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,12,70,181,14
+    DEFPUSHBUTTON   "OK",IDOK,210,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,210,24,50,14
+    LTEXT           "&Source file:",IDC_STATIC,13,10,180,8
+    LTEXT           "&Destination file:",IDC_STATIC,13,38,180,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,7,193,87
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 201, 93
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_NOPARENTNOTIFY | WS_EX_CONTROLPARENT | WS_EX_STATICEDGE
+CAPTION "About Move Your FIles"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,146,74,50,14
+    ICON            IDI_MAIN_ICON,IDC_STATIC,13,21,20,20
+    LTEXT           "Move Your Files, version %u.%u.%u.%u",IDC_VERSION,43,15,138,8
+    LTEXT           "Written by Mikhail Lyubushkin",IDC_STATIC,43,35,95,8
+    CONTROL         "",IDC_STATIC,"Static",SS_WHITEFRAME | SS_NOTIFY,5,5,191,61,WS_EX_STATICEDGE
+    LTEXT           "E-mail: clipeus@live.com",IDC_STATIC,43,45,79,8
+END
+
+IDD_EXPORT DIALOG 0, 0, 138, 53
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Export Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,81,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,24,50,14
+    CONTROL         "&All items",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,8,10,65,10
+    CONTROL         "&Selected items",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,8,29,65,10
+END
+
+IDD_IMPORT DIALOG 0, 0, 138, 53
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Import Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,81,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,24,50,14
+    CONTROL         "&Merge items",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,8,10,65,10
+    CONTROL         "&Replace items",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,8,29,65,10
+END
+
+IDD_FIND_DLG DIALOG 32, 24, 264, 95
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_FINDTEXT,50,6,150,12,ES_AUTOHSCROLL
+    CONTROL         "&All files",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,10,36,178,10
+    CONTROL         "Match &whole word only",IDC_WORD_ONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,79,185,10
+    DEFPUSHBUTTON   "&Find Next",IDOK,208,6,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,208,24,50,14
+    LTEXT           "Fi&nd what:",-1,6,8,40,8
+    GROUPBOX        "Look at",1160,6,26,194,50
+    CONTROL         "&Source files",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,10,49,178,10
+    CONTROL         "&Destination files",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,10,62,178,10
+END
+
+IDD_GENERAL DIALOG 0, 0, 235, 156
+STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "General"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "&Update records after sorting",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,10,209,10
+    CONTROL         "Do not show dialog when &import file",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,24,209,10
+    CONTROL         "&Merge items",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,21,45,200,10
+    CONTROL         "&Replace items",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,21,56,201,10
+    CONTROL         "Do not show dialog when &export file",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,72,209,10
+    CONTROL         "&All items",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP,21,92,201,10
+    CONTROL         "&Selected items",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,21,104,201,10
+    LTEXT           "Default:",IDC_STATIC,10,35,209,8
+    LTEXT           "Default:",IDC_STATIC,10,83,209,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_NEW_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        VERTGUIDE, 7
+        VERTGUIDE, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 196
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_EXPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 131
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 46
+    END
+
+    IDD_IMPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 131
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 46
+    END
+
+    IDD_FIND_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 258
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 89
+    END
+
+    IDD_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 149
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_MENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Inport Script File...",      ID_FILE_INPORT
+        MENUITEM "&Export Script File...",      ID_FILE_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&New...\tCtrl+N",             ID_EDIT_NEW
+        MENUITEM "&Edit...\tEnter",             ID_EDIT_EDIT
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tShift+Del",             ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+Ins",             ID_EDIT_COPY
+        MENUITEM "&Paste\tShift+Ins",           ID_EDIT_PASTE
+        MENUITEM "&Delete\tDel",                ID_EDIT_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...\tCtrl+F",            ID_EDIT_FIND
+        MENUITEM "Find ne&xt\tF3",              ID_EDIT_FINDNEXT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Refresh\tF5",                ID_VIEW_REFRESH
+        MENUITEM "&Option...",                  ID_VIEW_OPTION
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About...\tF1",               ID_HELP_ABOUT
+    END
+END
+
+IDR_ITEMMENU MENU
+BEGIN
+    POPUP "Item Menu"
+    BEGIN
+        MENUITEM "&Edit...",                    ID_EDIT_EDIT
+        MENUITEM "&New...",                     ID_EDIT_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t",                        ID_EDIT_CUT
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "&Delete",                     ID_EDIT_DELETE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAIN_TOOLBAR TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_INPORT
+    BUTTON      ID_FILE_EXPORT
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    BUTTON      ID_EDIT_DELETE
+    SEPARATOR
+    BUTTON      ID_EDIT_NEW
+    BUTTON      ID_EDIT_EDIT
+    SEPARATOR
+    BUTTON      ID_EDIT_FIND
+    SEPARATOR
+    BUTTON      ID_VIEW_OPTION
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAIN_TOOLBAR        BITMAP                  "toolbar1.bmp"
+
+IDB_OPEN                BITMAP                  "bitmap1.bmp"
+
+IDB_ICONCOLUMN          BITMAP                  "IconCol.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAIN_ACCEL ACCELERATORS
+BEGIN
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_DELETE,      ID_EDIT_DELETE,         VIRTKEY, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_EDIT_FINDNEXT,       VIRTKEY, NOINVERT
+    "N",            ID_EDIT_NEW,            VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "A",            ID_EDIT_SELECTALL,      VIRTKEY, CONTROL, NOINVERT
+    VK_F1,          ID_HELP_ABOUT,          VIRTKEY, NOINVERT
+    VK_F5,          ID_VIEW_REFRESH,        VIRTKEY, NOINVERT
+    VK_INSERT,      ID_EDIT_NEW,            VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN_ICON           ICON                    "main_ico.ico"
+
+IDI_DELETE_ITEM         ICON                    "delete_i.ico"
+
+IDI_MOVE_COPY_ITEM      ICON                    "move_cop.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,0,0
+ PRODUCTVERSION 2,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x29L
+#else
+ FILEFLAGS 0x28L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Move fIles delay until reboot"
+            VALUE "CompanyName", "Mikhail Lyubushkin"
+            VALUE "FileDescription", "Move Your FIles"
+            VALUE "FileVersion", "2.0.0.0"
+            VALUE "InternalName", "Move Your FIles"
+            VALUE "LegalCopyright", "Mikhail Lyubushkin"
+            VALUE "LegalTrademarks", "Move Your FIles"
+            VALUE "OriginalFilename", "MoveYour.exe"
+            VALUE "PrivateBuild", "2, 0, 0, 0"
+            VALUE "ProductName", "Move Your Files"
+            VALUE "ProductVersion", "2.0.0.0"
+            VALUE "SpecialBuild", "2, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_NEW_EDIT AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    ID_FILE_INPORT          "Import script file to system\nImport file"
+    ID_FILE_EXPORT          "Export script file fro system\nExport file"
+    ID_FILE_EXIT            "Quits the application\nExit"
+    ID_HELP_ABOUT           "Display the programm information\nAbout"
+    ID_EDIT_NEW             "Add new record\nNew"
+    ID_EDIT_DELETE          "Delete the selection\nDelete"
+    ID_EDIT_EDIT            "Edit exist record\nEdit"
+    ID_EDIT_FINDNEXT        "Continue find the last text\nFind next"
+    ID_VIEW_REFRESH         "Refresh item information\nRefresh"
+    ID_VIEW_OPTION          "Change application option\nOption"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_SELECTALL       "Select the entire document\nSelect All"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TITLE               "Move Your Files"
+    IDS_SYSTEM_ERROR        "An error has occurred in system services please try again.\nOS error: "
+    IDS_UNEXCEPTION         "Unexception error has occurred in the module.  If you continue to receive this error, please contact your system administrator."
+    IDS_OUT_OF_MEM          "The virtual memory is insufficient. Please close some programs and try again."
+    IDS_IDLE_STATUS         "%lu Item(s), %lu selected"
+    IDS_COL1                "#"
+    IDS_COL2                "Source files"
+    IDS_COL3                "Destination files"
+    IDS_NULL                "<delete>"
+    IDS_NEW_CAPTION         "New"
+    IDS_EDIT_CAPTION        "Edit"
+    IDS_EDIT_NEW_MES2       "The destination file does not present. Do you wish to delete the source file %s?"
+    IDS_EDIT_NEW_MES1       "The source file does not present. Please enter source file or press Cancel."
+END
+
+STRINGTABLE
+BEGIN
+    SC_SIZE                 "Change the window size"
+END
+
+STRINGTABLE
+BEGIN
+    SC_MOVE                 "Change the window position"
+END
+
+STRINGTABLE
+BEGIN
+    SC_MINIMIZE             "Reduce the window to an icon"
+END
+
+STRINGTABLE
+BEGIN
+    SC_MAXIMIZE             "Enlarge the window to full size"
+END
+
+STRINGTABLE
+BEGIN
+    SC_CLOSE                "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    SC_RESTORE              "Restore the window to normal size"
+END
+
+STRINGTABLE
+BEGIN
+    SC_TASKLIST             "Activate Task List"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTER              "Program files#*.exe;*.com;*.bat#All files#*.*#"
+    IDS_UPDATE_TO_EQU       "The files list is contained in list view and the file list is contained in registry are not match. List view will update."
+    IDS_SCRIPT_TEMP         "Move Your script files#*.myf#All files#*.*#"
+    IDS_FILE_CREATE_FAILED  "Cannot create script file.\nOS error: "
+    IDS_FILE_SYS_ERROR      "An error has occurred in system services in I/O processing script file, please try again.\nOS error: "
+    IDS_NO_SCRIPT_FILE      "Invalid file or script format."
+    IDS_SO_LARGE_FILE       "The file is so larrge for processing."
+    IDS_CANNOT_FIND         "Cannot find string ""%s""."
+    IDS_RIGHT_STATUS        "Version %u.%u"
+    IDS_FILE_OPEN_FAILED    "Cannot open script file.\nOS error: "
+    IDS_FILE_OPEN_FAILED2   "Cannot open wininitt.ini file.\nOS error: "
+    IDS_FILE_SYS_ERROR2     "An error has occurred in system services in I/O processing wininit.ini file, please try again.\nOS error: "
+    IDS_SO_LARGE_FILE2      "Wininit.ini file is so larrge for processing."
+    IDS_FILE_CREATE_FAILED2 "Cannot create wininit.ini file.\nOS error: "
+    IDS_FILE_CREATE_FAILED3 "Cannot create the file.\nOS error: "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILE_SYS_ERROR3     "An error has occurred in system services in I/O processing the file, please try again.\nOS error: "
+    IDS_CAPTION_SET         "Options"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
