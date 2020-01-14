@@ -34,9 +34,7 @@ private:
   void ReadWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey);
   void WriteWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey) const;
   void AdjustRect(int x, int y, int cx, int cy, bool bMove = true);
-  void DrawImage();
   void InitList();
-  void UninitList();
   void InsertItem(LPITEMDATA lpFileData, long nIndex);
   void AddToList(LPITEMDATA lpFileData);
   bool SetListItemData(LPITEMDATA lpFileData, long nIndex = -1);
@@ -48,7 +46,6 @@ private:
   bool OnEndFind(int nIndex);
   bool OnFind(bool bNext = false);
 
-  static LRESULT CALLBACK HeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
   static int CALLBACK CompareListItem(LPITEMDATA lpFileData1, LPITEMDATA lpFileData2, long nSortData);
 
 private:
@@ -78,13 +75,12 @@ private:
   HWND m_hListView = nullptr;
   HWND m_hStatusBar = nullptr;
   HWND m_hClipNextView = nullptr;
-  WNDPROC m_lfOldWndPros = nullptr;
+  HBITMAP m_hBitmap = nullptr;
   int m_ptWidth[2] = { 0, 0 };
   std::unique_ptr<DataHandler> m_pDataHandler;
   std::unique_ptr<FindDlg> m_pFindDlg;
   std::unique_ptr<RegMonitor> m_pRegMonitor;
 
   friend class DataHandler;
-
 };
 

@@ -9,6 +9,7 @@
 #define IDS_IDLE_STATUS                 5
 #define IDS_COL2                        7
 #define IDS_COL3                        8
+#define IDS_COL1                        9
 #define IDS_NULL                        10
 #define IDS_NEW_CAPTION                 11
 #define IDS_EDIT_CAPTION                12
@@ -76,7 +77,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        121
+#define _APS_NEXT_RESOURCE_VALUE        122
 #define _APS_NEXT_COMMAND_VALUE         40024
 #define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           101

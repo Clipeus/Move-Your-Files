@@ -197,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap1.bmp" />
+    <Image Include="bmp00001.bmp" />
     <Image Include="delete_i.ico" />
     <Image Include="downarrow.bmp" />
     <Image Include="IconCol.bmp" />

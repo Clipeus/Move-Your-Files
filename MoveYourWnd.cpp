@@ -49,7 +49,7 @@ TBBUTTON tbButtons[] =
 #define IDC_MAIN_STATUSBAR	IDC_MAIN_TOOLBAR + 1
 #define IDC_LIST_VIEW		IDC_MAIN_STATUSBAR + 1
 
-#define	COL1X	30
+#define	COL1X	40
 #define	COL2X	250
 #define	COL3X	250
 
@@ -165,8 +165,11 @@ void MoveYourWnd::OnDestroy(HWND hWnd)
 {
   WriteWindowPos(MoveYourApp::s_szMainKey, s_szWindowPos);
   m_pRegMonitor->Uninstall();
-  UninitList();
   ChangeClipboardChain(m_hWnd, m_hClipNextView);
+
+  if (m_hBitmap)
+  ::DeleteObject(m_hBitmap);
+
   PostQuitMessage(0);
 }
 
@@ -278,7 +281,7 @@ void MoveYourWnd::OnCommand(HWND hWnd, int id, HWND hWndCtl, UINT codeNotify)
     }
     case ID_EDIT_DELETE:
     {
-      int nIndex, nLastIndex;
+      int nIndex = -1, nLastIndex = -1;
       while (-1 != (nIndex = ListView_GetNextItem(m_hListView, -1, LVNI_SELECTED)))
       {
         ListView_DeleteItem(m_hListView, nLastIndex = nIndex);
@@ -459,36 +462,39 @@ void MoveYourWnd::OnContextMenu(HWND hWnd, HWND hwndContext, UINT x, UINT y)
 {
   POINT pt;
   RECT rect;
+
   if (x == -1 || y == -1)
   {
     int nItem = ListView_GetNextItem(m_hListView, -1, LVNI_SELECTED);
     if (nItem == -1)
-    {
-      pt.x = 0;
-      pt.y = 20;
-    }
+      ::GetClientRect(m_hListView, &rect);
     else
-    {
       ListView_GetItemRect(m_hListView, nItem, &rect, LVIR_BOUNDS);
-      pt.x = rect.left + 20;
-      pt.y = rect.top;
-    }
-    ClientToScreen(m_hListView, &pt);
+
+    LVCOLUMN col = { 0 };
+    col.mask = LVCF_WIDTH;
+    ListView_GetColumn(m_hListView, 0, &col);
+    pt.x = rect.left + col.cx;
+    pt.y = rect.top;
+    ::ClientToScreen(m_hListView, &pt);
   }
   else
   {
     pt.x = x;
     pt.y = y;
+
+    if (m_hListView != ::WindowFromPoint(pt))
+      return;
   }
 
-  HMENU hMenuMain = LoadMenu(MoveYourApp::GetApp()->GetInstance(), MAKEINTRESOURCE(IDR_ITEMMENU));
-  HMENU hMenuContext = GetSubMenu(hMenuMain, 0);
+  HMENU hMenuMain = ::LoadMenu(MoveYourApp::GetApp()->GetInstance(), MAKEINTRESOURCE(IDR_ITEMMENU));
+  HMENU hMenuContext = ::GetSubMenu(hMenuMain, 0);
 
-  SetMenuDefaultItem(hMenuContext, 0, true);
+  ::SetMenuDefaultItem(hMenuContext, 0, true);
   ChangeMenuItems(hMenuContext);
-  TrackPopupMenu(hMenuContext, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON | TPM_LEFTBUTTON, pt.x, pt.y, 0, hWnd, nullptr);
-  DestroyMenu(hMenuContext);
-  DestroyMenu(hMenuMain);
+  ::TrackPopupMenu(hMenuContext, TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON | TPM_LEFTBUTTON, pt.x, pt.y, 0, hWnd, nullptr);
+  ::DestroyMenu(hMenuContext);
+  ::DestroyMenu(hMenuMain);
 }
 
 LRESULT MoveYourWnd::OnNotify(HWND hWnd, int idFrom, NMHDR* pNmndr)
@@ -557,11 +563,7 @@ LRESULT MoveYourWnd::OnNotify(HWND hWnd, int idFrom, NMHDR* pNmndr)
     case HDN_ITEMCHANGING:
     {
       LPNMHEADER pHeader = (LPNMHEADER)pNmndr;
-      if (pHeader->iItem == 0)
-      {
-        return true;
-      }
-      else if (pHeader->iItem == 1)
+      if (pHeader->iItem == 1)
       {
         RECT Rect;
         GetWindowRect(m_hListView, &Rect);
@@ -704,8 +706,7 @@ void MoveYourWnd::ReadWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey)
 
 void MoveYourWnd::WriteWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey) const
 {
-  WINDOWPLACEMENT WinPos;
-  memset(&WinPos, 0, sizeof(WINDOWPLACEMENT));
+  WINDOWPLACEMENT WinPos = { 0 };
   WinPos.length = sizeof(WINDOWPLACEMENT);
   GetWindowPlacement(m_hWnd, &WinPos);
   SetRegBinary(lpszFolder, lpszKey, &WinPos, sizeof(WINDOWPLACEMENT), HKEY_CURRENT_USER);
@@ -713,8 +714,7 @@ void MoveYourWnd::WriteWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey) const
 
 bool MoveYourWnd::Init()
 {
-  WNDCLASSEX wc;
-  memset(&wc, 0, sizeof(WNDCLASSEX));
+  WNDCLASSEX wc = { 0 };
 
   wc.cbSize = sizeof(WNDCLASSEX);
   wc.style = 0;
@@ -777,88 +777,19 @@ void MoveYourWnd::AdjustRect(int x, int y, int cx, int cy, bool bMove /*= true*/
   ListView_SetColumn(m_hListView, 2, &TaskList);
 }
 
-void MoveYourWnd::DrawImage()
-{
-  HWND hHeader = ListView_GetHeader(m_hListView);
-  if (!hHeader)
-    return;
-
-  HD_ITEM hdItem = { 0 };
-  hdItem.mask = HDI_FORMAT;
-  if (!Header_GetItem(hHeader, 0, &hdItem))
-    return;
-
-  HBITMAP hBitmap = ::CreateMappedBitmap(MoveYourApp::GetApp()->GetInstance(), IDB_ICONCOLUMN, 0, nullptr, 0);
-  if (!hBitmap)
-    return;
-
-  hdItem.mask |= HDI_FORMAT | HDI_BITMAP;
-  hdItem.fmt |= HDF_BITMAP | HDF_CENTER;
-  hdItem.hbm = hBitmap;
-
-  Header_SetItem(hHeader, 0, &hdItem);
-  DeleteObject(hBitmap);
-}
-
-LRESULT CALLBACK MoveYourWnd::HeaderProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-  switch (uMsg)
-  {
-    case WM_SETCURSOR:
-    {
-      POINT pt;
-      GetCursorPos(&pt);
-      ScreenToClient(hWnd, &pt);
-
-      RECT Rect;
-      SetRectEmpty(&Rect);
-      Header_GetItemRect(hWnd, 0, &Rect);
-
-      if (pt.x <= Rect.right - Rect.left + 10)
-        return DefWindowProc(hWnd, uMsg, wParam, lParam);
-      break;
-    }
-    case WM_RBUTTONUP:
-    {
-      return 0;
-    }
-    case WM_LBUTTONDOWN:
-    {
-      RECT Rect;
-      SetRectEmpty(&Rect);
-      Header_GetItemRect(hWnd, 0, &Rect);
-
-      if (LOWORD(lParam) <= Rect.right - Rect.left)
-        return 0;
-      break;
-    }
-  }
-
-  WNDPROC* plfOldWndPros = reinterpret_cast<WNDPROC*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
-  if (plfOldWndPros != nullptr && *plfOldWndPros != nullptr)
-    return CallWindowProc(*plfOldWndPros, hWnd, uMsg, wParam, lParam);
-  else
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
-}
-
 void MoveYourWnd::InitList()
 {
-  HWND hHeader = ListView_GetHeader(m_hListView);
-  if (hHeader)
-  {
-    m_lfOldWndPros = nullptr;
-    SetWindowLongPtr(hHeader, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(&m_lfOldWndPros));
-    m_lfOldWndPros = (WNDPROC)SetWindowLongPtr(hHeader, GWLP_WNDPROC, (LONG_PTR)HeaderProc);
-  }
-
   SendMessage(m_hListView, LVM_SETEXTENDEDLISTVIEWSTYLE, 0, LVS_EX_FULLROWSELECT);
 
   tstring str;
   LV_COLUMN TaskList;
 
-  TaskList.fmt = LVCFMT_CENTER;
+  TaskList.mask = LVCF_FMT | LVCF_WIDTH | LVCF_TEXT;
+  TaskList.fmt = LVCFMT_CENTER | LVCFMT_FIXED_WIDTH;
   TaskList.cx = COL1X;
-  TaskList.mask = LVCF_FMT | LVCF_WIDTH;
+  TaskList.cchTextMax = 255;
+  str = LoadString(IDS_COL1);
+  TaskList.pszText = &str.front();
   TaskList.iSubItem = -1;
   ListView_InsertColumn(m_hListView, 0, &TaskList);
 
@@ -876,23 +807,28 @@ void MoveYourWnd::InitList()
   TaskList.pszText = &str.front();
   ListView_InsertColumn(m_hListView, 2, &TaskList);
 
-  DrawImage();
-}
-
-void MoveYourWnd::UninitList()
-{
+  // Init Header column
   HWND hHeader = ListView_GetHeader(m_hListView);
-  if (m_lfOldWndPros && hHeader)
-  {
-    SetWindowLongPtr(hHeader, GWLP_USERDATA, 0);
-    SetWindowLongPtr(hHeader, GWLP_WNDPROC, (LONG_PTR)m_lfOldWndPros);
-    m_lfOldWndPros = nullptr;
-  }
+  if (!hHeader)
+    return;
+
+  HD_ITEM hdItem = { 0 };
+  hdItem.mask = HDI_FORMAT;
+  if (!Header_GetItem(hHeader, 0, &hdItem))
+    return;
+
+  m_hBitmap = ::CreateMappedBitmap(MoveYourApp::GetApp()->GetInstance(), IDB_ICONCOLUMN, 0, nullptr, 0);
+  if (!m_hBitmap)
+    return;
+
+  hdItem.mask |= HDI_BITMAP;
+  hdItem.fmt |= HDF_BITMAP | HDF_FIXEDWIDTH;
+  hdItem.hbm = m_hBitmap;
+  Header_SetItem(hHeader, 0, &hdItem);
 }
 
 void MoveYourWnd::InsertItem(LPITEMDATA lpItemData, long nIndex)
 {
-
   std::unique_ptr<ITEMDATA> spItemData(lpItemData);
 
   LV_ITEM lvItem;
@@ -953,15 +889,13 @@ bool MoveYourWnd::SetListItemData(LPITEMDATA lpItemData, long nIndex)
       return false;
   }
 
-  LV_ITEM lvItem;
-  memset(&lvItem, 0, sizeof(LV_ITEM));
+  LV_ITEM lvItem = { 0 };
   lvItem.mask = LVIF_PARAM;
   lvItem.iItem = nIndex;
   if (ListView_GetItem(m_hListView, &lvItem) && lvItem.lParam)
   {
     delete (LPITEMDATA)lvItem.lParam;
   }
-
 
   memset(&lvItem, 0, sizeof(LV_ITEM));
   lvItem.mask = LVIF_IMAGE | LVIF_TEXT | LVIF_PARAM;
@@ -1014,8 +948,7 @@ bool MoveYourWnd::GetListItemData(LPITEMDATA lpItemData, long nIndex)
       return false;
   }
 
-  LV_ITEM lvItem;
-  memset(&lvItem, 0, sizeof(LV_ITEM));
+  LV_ITEM lvItem = { 0 };
   lvItem.mask = LVIF_PARAM;
   lvItem.iItem = nIndex;
   if (ListView_GetItem(m_hListView, &lvItem))
@@ -1064,8 +997,7 @@ int CALLBACK MoveYourWnd::CompareListItem(LPITEMDATA lpItemData1, LPITEMDATA lpI
 
 void MoveYourWnd::DrawColumnImage(HWND hHeader, int nColumn, short nOrder, bool bBitmap)
 {
-  HD_ITEM hdItem;
-  memset(&hdItem, sizeof(HD_ITEM), 0);
+  HD_ITEM hdItem = { 0 };
   hdItem.mask = HDI_FORMAT;
   if (!Header_GetItem(hHeader, nColumn, &hdItem))
     return;
@@ -1098,8 +1030,7 @@ void MoveYourWnd::SortItems(short nColumn, bool bBitmap)
 
   if (nColumn != -1)
   {
-    HDITEM HdItem;
-    memset(&HdItem, 0, sizeof(HDITEM));
+    HDITEM HdItem = { 0 };
     HdItem.mask |= HDI_LPARAM;
     if (!Header_GetItem(hHeader, nColumn, &HdItem))
       return;

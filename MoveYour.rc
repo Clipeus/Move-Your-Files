@@ -442,6 +442,7 @@ BEGIN
     IDS_IDLE_STATUS         "%lu Item(s), %lu selected"
     IDS_COL2                "Source files"
     IDS_COL3                "Destination files"
+    IDS_COL1                "#"
     IDS_NULL                "<delete>"
     IDS_NEW_CAPTION         "New"
     IDS_EDIT_CAPTION        "Edit"
