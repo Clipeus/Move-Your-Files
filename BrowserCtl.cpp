@@ -132,9 +132,9 @@ bool OnSelectFile(HWND hWnd)
   ofn.lpstrFilter = szFilter;
   ofn.lpstrCustomFilter = nullptr;
   ofn.nMaxCustFilter = 0;
-  ofn.nFilterIndex = 1;;
+  ofn.nFilterIndex = 2;
   ofn.lpstrFile = szFileName;
-  ofn.nMaxFile = MAX_PATH;
+  ofn.nMaxFile = sizeof(szFileName) / sizeof(TCHAR);
   ofn.lpstrFileTitle = nullptr;
   ofn.nMaxFileTitle = 0;
   ofn.lpstrInitialDir = nullptr;

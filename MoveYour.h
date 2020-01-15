@@ -19,8 +19,8 @@ typedef std::string tstring;
 
 typedef struct tagITEMDATA
 {
-  TCHAR szSource[MAX_PATH + 1] = { 0 };
-  TCHAR szDestination[MAX_PATH + 1] = { 0 };
+  TCHAR szSource[MAX_PATH] = { 0 };
+  TCHAR szDestination[MAX_PATH] = { 0 };
 } ITEMDATA, * LPITEMDATA;
 
 typedef struct tagITEMDATAEX : tagITEMDATA

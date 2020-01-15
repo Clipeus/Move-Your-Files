@@ -271,7 +271,7 @@ tstring StrFormat(LPCTSTR lpszFormat, ...)
 bool GetFixedInfo(VS_FIXEDFILEINFO& rFixedInfo)
 {
   // get the filename of the executable containing the version resource
-  TCHAR szFilename[MAX_PATH + 1] = { 0 };
+  TCHAR szFilename[MAX_PATH] = { 0 };
   if (GetModuleFileName(nullptr, szFilename, MAX_PATH) == 0)
   {
     _RPTFN(_CRT_ERROR, "GetModuleFileName failed with error %d\n", GetLastError());

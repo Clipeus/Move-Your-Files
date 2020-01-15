@@ -266,7 +266,7 @@ bool DataHandler::OnSelectFile(HWND hWnd, HINSTANCE hInstance, bool bOpen, LPTST
   ofn.lpstrFilter = strFilter.c_str();
   ofn.lpstrCustomFilter = nullptr;
   ofn.nMaxCustFilter = 0;
-  ofn.nFilterIndex = 1;;
+  ofn.nFilterIndex = 1;
   ofn.lpstrFile = lpszName;
   ofn.nMaxFile = MAX_PATH;
   ofn.lpstrFileTitle = nullptr;

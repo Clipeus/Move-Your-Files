@@ -56,7 +56,7 @@ void FindDlg::OnCommand(HWND hWnd, int id, HWND hWndCtl, UINT codeNotify)
     {
       if (codeNotify == EN_CHANGE)
       {
-        TCHAR szFindText[MAX_PATH + 1] = _T("");
+        TCHAR szFindText[MAX_PATH] = _T("");
         GetDlgItemText(hWnd, IDC_FINDTEXT, szFindText, MAX_PATH);
         EnableWindow(GetDlgItem(hWnd, IDOK), szFindText[0]);
       }

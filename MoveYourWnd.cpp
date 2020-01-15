@@ -679,7 +679,7 @@ void MoveYourWnd::OnDrawClipboard(HWND hWnd)
 
 void MoveYourWnd::OnDropFiles(HWND hWnd, HDROP hDrop)
 {
-  TCHAR szFileName[MAX_PATH + 1];
+  TCHAR szFileName[MAX_PATH];
   int nCount = DragQueryFile(hDrop, -1, nullptr, 0);
   for (int i = 0; i < nCount; i++)
   {
