@@ -455,7 +455,7 @@ void MoveYourWnd::OnMenuSelect(HWND hWnd, HMENU hMenu, int item, HMENU hMenuPopu
     lpszText = _tcstok_s(&strTemp.front(), _T("\n"), &lpszNext);
   }
 
-  SendMessage(m_hStatusBar, SB_SETTEXT, 0 | dwStyle, (LPARAM)lpszText);
+  SendMessage(m_hStatusBar, SB_SETTEXT, dwStyle, (LPARAM)lpszText);
 }
 
 void MoveYourWnd::OnContextMenu(HWND hWnd, HWND hwndContext, UINT x, UINT y)
@@ -743,7 +743,7 @@ bool MoveYourWnd::Create(int nCmdShow)
   if (!WindowBase::Create(WS_EX_ACCEPTFILES, s_szWindowClass, MoveYourApp::GetApp()->GetAppName()))
   {
     ShowOSError();
-    return 1;
+    return false;
   }
 
   _ASSERTE(m_hWnd);

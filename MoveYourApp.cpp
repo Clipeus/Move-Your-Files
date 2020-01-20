@@ -88,7 +88,7 @@ int MoveYourApp::Run(int nCmdShow)
   MSG msg;
   while (GetMessage(&msg, nullptr, 0, 0))
   {
-    if (!TranslateAccelerator(m_pMainWnd.get()->GetHWND(), hAccel, &msg))
+    if (!TranslateAccelerator(m_pMainWnd->GetHWND(), hAccel, &msg))
     {
       TranslateMessage(&msg);
       DispatchMessage(&msg);

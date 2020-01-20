@@ -21,8 +21,6 @@ public:
   ~MoveYourWnd();
 
 public:
-  static LRESULT WINAPI WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-
   bool Init();
   bool Create(int nCmdShow);
 
