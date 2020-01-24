@@ -136,9 +136,6 @@
     <Image Include="uparrow.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="bmp00001.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MoveYour.rc">
