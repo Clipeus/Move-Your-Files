@@ -56,9 +56,10 @@ void FindDlg::OnCommand(HWND hWnd, int id, HWND hWndCtl, UINT codeNotify)
     {
       if (codeNotify == EN_CHANGE)
       {
-        TCHAR szFindText[MAX_PATH] = _T("");
-        GetDlgItemText(hWnd, IDC_FINDTEXT, szFindText, MAX_PATH);
-        EnableWindow(GetDlgItem(hWnd, IDOK), szFindText[0]);
+        tstring strFindText(MAX_PATH, 0);
+        int size = GetDlgItemText(hWnd, IDC_FINDTEXT, &strFindText.front(), strFindText.size());
+        strFindText.resize(size);
+        EnableWindow(GetDlgItem(hWnd, IDOK), !strFindText.empty());
       }
       break;
     }
