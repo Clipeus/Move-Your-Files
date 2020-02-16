@@ -701,7 +701,7 @@ void MoveYourWnd::ReadWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey)
   if (GetRegBinary(lpszFolder, lpszKey, &WinPos, sizeof(WINDOWPLACEMENT), HKEY_CURRENT_USER))
     SetWindowPlacement(m_hWnd, &WinPos);
   else
-    ShowWindow(MoveYourApp::GetApp()->GetMainWnd()->GetHWND(), SW_SHOWDEFAULT);
+    ShowWindow(m_hWnd, SW_SHOWDEFAULT);
 }
 
 void MoveYourWnd::WriteWindowPos(LPCTSTR lpszFolder, LPCTSTR lpszKey) const
